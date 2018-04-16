@@ -1,0 +1,151 @@
+ <!DOCTYPE html>
+<html>
+  <head>
+    <title>Task1</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+  	<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+		 <div class="container">
+ 	<div class="row">
+ 		<div class="col-md-4">
+ 			<h1>POST</h1>
+ 			<form action="/person/post" method="post">
+    <div class="form-group">
+      <label for="name">Name:</label>
+      <input type="text" class="form-control" id="name" placeholder="Enter your name" name="name" required="true">
+    </div>
+    <div class="form-group">
+      <label for="age">Age:</label>
+      <input type="number" class="form-control" id="age" placeholder="Enter your age" name="age" required="true">
+    </div>
+    <div class="form-group">
+      <label for="Gender">Gender:</label>
+      <label class="radio-inline">
+      <input type="radio" name="option" value="Male">Male
+    </label>
+    <label class="radio-inline">
+      <input type="radio" name="option" value="Female">Female
+    </label>
+    </div>
+    <div class="form-group">
+      <label for="Mobile">Mobile Number:</label>
+      <input type="number" class="form-control" id="mobile" placeholder="Enter your name" name="mobile" required="true">
+    </div>
+    <button type="submit" name="submit" class="btn btn-primary">Submit</button>
+  </form>
+ 		</div>
+ 		<div class="col-md-8">
+ 			<h1>GET</h1>
+ 			<table class="table">
+    <thead>
+      <tr>
+      	<th>ID</th>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Gender</th>
+        <th>Mbile Number</th>
+        <th>Edit</th>
+      </tr>
+    </thead>
+    <tbody>
+    	{{# each info  }}
+      <tr>
+      	{{# each this }}
+      	<td id="{{ this._id }}">{{ this._id }}</td>
+        <td id="{{ this.Name }}">{{ this.Name }}</td>
+        <td id="{{ this.Age }}">{{ this.Age }}</td>
+        <td id="{{ this.Gender }}">{{ this.Gender }}</td>
+        <td id="{{ this.Mobile_Number }}">{{ this.Mobile_Number }}</td>
+        <td><button type="submit" name="submit" onclick="foo('{{ this._id }}',
+					'{{ this.Name }}',
+					'{{ this.Age }}',
+					'{{ this.Gender }}',
+					'{{ this.Mobile_Number }}',
+        	)" class="btn btn-primary">Edit</button></td>
+        {{/each}}
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+ 		</div>
+ 	</div>
+ </div>
+ <br>
+ <br>
+ <br>
+ <div class="container">
+ 	<div class="row">
+ 		<div class="col-md-4">
+ 			<h1>PUT</h1>
+ 			<form action="/person/put" method="post">
+ 				<div class="form-group">
+      <label for="id">ID:</label>
+      <input type="text" class="form-control" id="id1" name="id"  required="true">
+    </div>
+    <div class="form-group">
+      <label for="name">Name:</label>
+      <input type="text" class="form-control" id="name1" name="name" required="true">
+    </div>
+    <div class="form-group">
+      <label for="age">Age:</label>
+      <input type="number" class="form-control" id="age1" name="age" required="true">
+    </div>
+    <div class="form-group">
+      <label for="Gender">Gender:</label>
+      <label class="radio-inline">
+      <input type="radio" name="option1" id="gender1" value="Male">Male
+    </label>
+    <label class="radio-inline">
+      <input type="radio" name="option1" id="gender1" value="Female">Female
+    </label>
+    </div>
+    <div class="form-group">
+      <label for="mobile">Mobile Number:</label>
+      <input type="number" class="form-control" id="mobile1" name="mobile" required="true">
+    </div>
+    <button type="submit" name="update" class="btn btn-primary">Update</button>
+  </form>
+ 		</div>
+ 		<div class="col-md-8">
+  <h1>DELETE</h1>
+ 			<table class="table">
+    <thead>
+      <tr>
+      	<th>ID</th>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Gender</th>
+        <th>Mbile Number</th>
+        <th>Edit</th>
+      </tr>
+    </thead>
+    <tbody>
+    	{{# each info  }}
+      <tr>
+      	{{# each this }}
+      	<td>{{ this._id }}</td>
+        <td>{{ this.Name }}</td>
+        <td>{{ this.Age }}</td>
+        <td>{{ this.Gender }}</td>
+        <td>{{ this.Mobile_Number }}</td>
+        <td><a href="/person/delete/{{ this._id }}">Delete</a></td>
+        {{/each}}
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+ 		</div>
+ </div>
+ <script type="text/javascript">
+ 	function foo(v,w,x,y,z){
+ 		document.getElementById("id1").value = v ;
+ 		document.getElementById("name1").value = w;
+ 		document.getElementById("age1").value = x ;
+ 		// document.getElementById("gender1").value = y ;
+ 		document.getElementById("mobile1").value = z ;
+ 	}
+ </script>
+  </body>
+</html>
